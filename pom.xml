@@ -29,6 +29,7 @@
         <opentracing-spring-jaeger-web-starte.version>3.2.2</opentracing-spring-jaeger-web-starte.version>
         <alibaba-cloud.version>2.2.3.RELEASE</alibaba-cloud.version>
         <fastjson.version>1.2.73</fastjson.version>
+        <spring-cloud-starter-zipkin.version>2.2.6.RELEASE</spring-cloud-starter-zipkin.version>
         <producer-demo-faced.version>0.0.1-SNAPSHOT</producer-demo-faced.version>
         <consumer-demo-faced.version>0.0.1-SNAPSHOT</consumer-demo-faced.version>
         <consumer-demo-client.version>0.0.1-SNAPSHOT</consumer-demo-client.version>
@@ -82,6 +83,17 @@
                 <artifactId>consumer-demo-util</artifactId>
                 <version>${consumer-demo-util.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zipkin</artifactId>
+                <version>${spring-cloud-starter-zipkin.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+    </dependencies>
 </project>
