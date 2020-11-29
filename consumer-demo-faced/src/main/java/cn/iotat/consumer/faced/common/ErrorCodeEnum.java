@@ -1,12 +1,20 @@
-package cn.iotat.consumer.response;
+package cn.iotat.consumer.faced.common;
 
 public enum ErrorCodeEnum {
     //=========== 参数错误(1xxx) ===========
+    /**
+     * 必填参数没有填写
+     */
     HAVE_NO_ID("1000","param 'id' is required"),
-    SWITCH_OFF("1001","switch is off")
     //=========== 内部错误(2xxx) ===========
 
     //=========== 网络错误(3xxx) ===========
+
+    //=========== 业务错误(4xxx) ===========
+    /**
+     * 由于开关关闭导致访问失败
+     */
+    SWITCH_OFF("4000","switch is off")
     ;
 
     ErrorCodeEnum(String errCode, String errMsg) {

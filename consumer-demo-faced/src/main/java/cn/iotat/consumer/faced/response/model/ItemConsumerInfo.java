@@ -1,7 +1,10 @@
-package cn.iotat.consumer.response.model;
+package cn.iotat.consumer.faced.response.model;
 
 import java.io.Serializable;
 
+/**
+ * 此处文件名不一致知识为了与生产者区分
+ */
 public class ItemConsumerInfo implements Serializable {
 
     private static final long serialVersionUID = 4801568842144562892L;

@@ -1,9 +1,12 @@
-package cn.iotat.consumer.request.model;
+package cn.iotat.consumer.faced.request.model;
 
 
-import cn.iotat.consumer.request.BaseRequest;
+import cn.iotat.consumer.faced.request.BaseRequest;
 
-public class ItemConsumerForm extends BaseRequest {
+/**
+ * 此处类名不一样只是为了与生产者区分
+ */
+public class ConsumerItemAddRequest extends BaseRequest {
     private static final long serialVersionUID = -6381056365713572846L;
     private long id;
     private String name;

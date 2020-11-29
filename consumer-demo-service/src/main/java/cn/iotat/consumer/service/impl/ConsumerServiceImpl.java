@@ -2,15 +2,16 @@ package cn.iotat.consumer.service.impl;
 
 import cn.iotat.consumer.client.ProducerClient;
 import cn.iotat.consumer.converter.ItemConverter;
-import cn.iotat.consumer.faced.ConsumerService;
-import cn.iotat.consumer.request.model.ItemConsumerForm;
-import cn.iotat.consumer.response.BaseResponse;
-import cn.iotat.consumer.response.model.ItemConsumerInfo;
-import cn.iotat.producer.faced.request.model.ItemForm;
+import cn.iotat.consumer.faced.api.ConsumerService;
+import cn.iotat.consumer.faced.request.model.ConsumerItemAddRequest;
+import cn.iotat.consumer.faced.response.BaseResponse;
+import cn.iotat.consumer.faced.response.model.ItemConsumerInfo;
+import cn.iotat.producer.faced.request.model.ItemAddRequest;
 import cn.iotat.producer.faced.response.model.ItemInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -21,13 +22,13 @@ public class ConsumerServiceImpl implements ConsumerService {
     /**
      * 添加新的item
      *
-     * @param itemConsumerForm item
+     * @param consumerItemAddRequest item
      * @return 是否添加成功
      */
     @Override
-    public BaseResponse<Boolean> addNewItem(ItemConsumerForm itemConsumerForm) {
-        ItemForm itemForm = ItemConverter.converterExternalItemForm(itemConsumerForm);
-        boolean result = producerClient.addNewItem(itemForm);
+    public BaseResponse<Boolean> addNewItem(ConsumerItemAddRequest consumerItemAddRequest) {
+        ItemAddRequest itemAddRequest = ItemConverter.converterExternalItemForm(consumerItemAddRequest);
+        boolean result = producerClient.addNewItem(itemAddRequest);
         return BaseResponse.success(result);
     }
 
@@ -37,8 +38,8 @@ public class ConsumerServiceImpl implements ConsumerService {
      * @return 包含全部item的列表
      */
     @Override
-    public BaseResponse<List<ItemConsumerInfo>> getAllItem() {
-        List<ItemInfo> itemInfoList = producerClient.getAllItem();
+    public BaseResponse<List<ItemConsumerInfo>> getAllItem(int pageNum,int pageSize) {
+        Collection<ItemInfo> itemInfoList = producerClient.getAllItem(pageNum, pageSize);
         List<ItemConsumerInfo> itemConsumerInfoList = ItemConverter.batchConverterAvailableItemInfo(itemInfoList);
         return BaseResponse.success(itemConsumerInfoList);
     }

@@ -1,11 +1,12 @@
 package cn.iotat.consumer.converter;
 
-import cn.iotat.consumer.request.model.ItemConsumerForm;
-import cn.iotat.consumer.response.model.ItemConsumerInfo;
-import cn.iotat.producer.faced.request.model.ItemForm;
+import cn.iotat.consumer.faced.request.model.ConsumerItemAddRequest;
+import cn.iotat.consumer.faced.response.model.ItemConsumerInfo;
+import cn.iotat.producer.faced.request.model.ItemAddRequest;
 import cn.iotat.producer.faced.response.model.ItemInfo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ItemConverter {
@@ -28,7 +29,7 @@ public class ItemConverter {
      * @param itemInfoList 外部的itemInfo集合
      * @return 内部的itemInfo集合
      */
-    public static List<ItemConsumerInfo> batchConverterAvailableItemInfo(List<ItemInfo> itemInfoList) {
+    public static List<ItemConsumerInfo> batchConverterAvailableItemInfo(Collection<ItemInfo> itemInfoList) {
         List<ItemConsumerInfo> itemConsumerInfoList = new ArrayList<>();
         itemInfoList.forEach(itemInfo -> {
             ItemConsumerInfo itemConsumerInfo = converterAvailableItemInfo(itemInfo);
@@ -40,13 +41,13 @@ public class ItemConverter {
     /**
      * 将内部的itemForm转换为外部的itemForm
      *
-     * @param itemConsumerForm 内部的itemForm
+     * @param consumerItemAddRequest 内部的itemForm
      * @return 外部的itemForm
      */
-    public static ItemForm converterExternalItemForm(ItemConsumerForm itemConsumerForm) {
-        ItemForm itemForm = new ItemForm();
-        itemForm.setId(itemConsumerForm.getId());
-        itemForm.setName(itemConsumerForm.getName());
-        return itemForm;
+    public static ItemAddRequest converterExternalItemForm(ConsumerItemAddRequest consumerItemAddRequest) {
+        ItemAddRequest itemAddRequest = new ItemAddRequest();
+        itemAddRequest.setId(consumerItemAddRequest.getId());
+        itemAddRequest.setName(consumerItemAddRequest.getName());
+        return itemAddRequest;
     }
 }
